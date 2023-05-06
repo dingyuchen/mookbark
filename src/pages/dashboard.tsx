@@ -1,15 +1,11 @@
-import { UserButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
-  const router = useRouter();
-  const user = useUser();
 
   return (
     <>
@@ -19,6 +15,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <div></div>
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
@@ -51,16 +48,6 @@ const Home: NextPage = () => {
             <p className="text-2xl text-white">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
-            {user.isSignedIn ? (
-              <UserButton />
-            ) : (
-              <button
-                className="rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                onClick={() => router.push("/sign-in")}
-              >
-                Sign in
-              </button>
-            )}
           </div>
         </div>
       </main>
