@@ -11,6 +11,10 @@ const Home: NextPage = () => {
   const router = useRouter();
   const user = useUser();
 
+  const redirectToLogin = () => {
+    void router.push("/sign-in");
+  };
+
   return (
     <>
       <Head>
@@ -56,7 +60,7 @@ const Home: NextPage = () => {
             ) : (
               <button
                 className="rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                onClick={() => router.push("/sign-in")}
+                onClick={redirectToLogin}
               >
                 Sign in
               </button>

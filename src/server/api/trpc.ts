@@ -42,9 +42,9 @@ const createInnerTRPCContext = ({ auth }: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async ({ req }: CreateNextContextOptions) => {
+export const createTRPCContext = ({ req }: CreateNextContextOptions) => {
   // Get the session from the server using the getServerSession wrapper function
-  return await createInnerTRPCContext({ auth: getAuth(req) });
+  return createInnerTRPCContext({ auth: getAuth(req) });
 };
 
 /**
@@ -59,8 +59,8 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 import {
   getAuth,
-  SignedInAuthObject,
-  SignedOutAuthObject,
+  type SignedInAuthObject,
+  type SignedOutAuthObject,
 } from "@clerk/nextjs/dist/server";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
